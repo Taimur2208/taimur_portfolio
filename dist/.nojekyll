@@ -1,0 +1,2 @@
+# This file tells GitHub Pages: serve ALL files as-is (don't use Jekyll).
+# Without it, files/folders starting with "_" can break on GitHub Pages.

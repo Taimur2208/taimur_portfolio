@@ -1,0 +1,32 @@
+TAIMUR KHAN PORTFOLIO — PHOTO GUIDE
+====================================
+
+WhatsApp: +92 308 9342404 (already connected ✅)
+Email: taimurkhancode22@gmail.com (already connected ✅)
+
+HOW TO ADD YOUR PHOTO:
+----------------------
+1. Remove background from your picture:
+   - Go to https://www.remove.bg and upload your photo
+   - Download the transparent PNG
+
+2. Rename the file to ONE of these:
+   - taimur.png  (best — transparent background)
+   - taimur.jpg
+   - taimur.jpeg
+   - taimur.webp
+
+3. Put it in this folder: public/
+   Example: public/taimur.png
+
+4. Rebuild / redeploy — your photo appears automatically
+   in Hero + Contact Card with glow ring.
+
+TIP: Use a clear front-face photo in good light.
+
+NOTES:
+------
+- Certificates are already built-in (ICIP + 128 IQ).
+  No images needed for them.
+- "Verify Online" button has been removed as requested.
+- Website is fully responsive (mobile / tablet / desktop).
