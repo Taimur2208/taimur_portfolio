@@ -1,0 +1,60 @@
+# ============================================================
+#  TAIMUR KHAN PORTFOLIO — Auto Deploy to GitHub Pages
+# ------------------------------------------------------------
+#  Yeh file push karte hi GitHub khud website bana kar host
+#  kar dega. Aapko kuch manual nahi karna — bas:
+#   1. Yeh poora project GitHub repo me push karo
+#   2. Repo Settings → Pages → Source = "GitHub Actions"
+#   3. Har push par site auto-update ho jayegi ✅
+# ============================================================
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build website
+        run: npm run build
+
+      - name: Upload built site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

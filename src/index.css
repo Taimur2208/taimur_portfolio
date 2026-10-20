@@ -1,0 +1,218 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: #020617;
+  color: #e2e8f0;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  min-width: 320px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: #10b981;
+  color: #020617;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #10b981, #0ea5e9);
+  border-radius: 10px;
+  border: 2px solid #020617;
+}
+
+/* thin scrollbar for code blocks on mobile */
+pre::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+pre::-webkit-scrollbar-thumb {
+  border: none;
+}
+
+/* Grid background */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(16, 185, 129, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.07) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.bg-dots {
+  background-image: radial-gradient(rgba(148, 163, 184, 0.18) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+}
+
+/* Glow text */
+.text-glow-green {
+  text-shadow: 0 0 24px rgba(16, 185, 129, 0.6);
+}
+.text-glow-blue {
+  text-shadow: 0 0 24px rgba(14, 165, 233, 0.6);
+}
+
+/* Card shine */
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+.shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255,255,255,0.12), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.7s ease;
+  pointer-events: none;
+}
+.shine:hover::after {
+  left: 130%;
+}
+
+/* Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+}
+.animate-float-y {
+  animation: float-y 5s ease-in-out infinite;
+}
+
+@keyframes float-y-delay {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(12px); }
+}
+.animate-float-y-delay {
+  animation: float-y-delay 6s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 22s linear infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+.animate-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 5s ease infinite;
+}
+
+/* Typing caret */
+.typing-caret::after {
+  content: "|";
+  margin-left: 2px;
+  color: #10b981;
+  animation: blink 1s step-end infinite;
+  font-weight: 300;
+}
+
+/* Glass */
+.glass {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* Profile cutout mask - helps blend photo with removed bg */
+.profile-cutout {
+  mask-image: linear-gradient(to bottom, black 82%, transparent 98%);
+  -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 98%);
+}
+
+/* Certificate paper texture */
+.cert-paper {
+  background:
+    radial-gradient(ellipse at top left, rgba(16,185,129,0.06), transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(14,165,233,0.06), transparent 50%),
+    #ffffff;
+}
+
+/* ---- Responsive helpers ---- */
+@media (max-width: 400px) {
+  .bg-grid {
+    background-size: 32px 32px;
+  }
+}
+
+/* Prevent long words / IDs from breaking layout on tiny screens */
+.break-safe {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Smooth tap on mobile */
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-float-y,
+  .animate-float-y-delay,
+  .animate-spin-slow,
+  .animate-gradient-x {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
